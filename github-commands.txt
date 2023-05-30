@@ -1,0 +1,30 @@
+1.git init
+2.git status
+3.git add .
+4.git commit -m "messages"
+5. git push origin master
+6.git remote add origin https:........
+7.git remote -v
+8.git push origin master
+9.git push -u origin master(without typing origin master subsequently
+
+
+create new branch
+check a branch - git branch
+create a branch - git checkout -b name
+switch a branch - git chechout name
+
+
+managing branches
+differences - git diff name
+push new branch- git puah -u origin
+delete branch - git branch -d name
+merge branch - git merge branchname
+
+undoing commit
+git reset
+undo last commit - git reset HEAD~1
+
+commit Log
+git log
+ 
