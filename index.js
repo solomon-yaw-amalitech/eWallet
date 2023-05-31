@@ -34,29 +34,78 @@ if(description.length>0 && moneyValue.length>0)
 }
 
 
-
 });
+
+function showItems(){
+let items = getItemsFromLocalStorage();
+const collection = document.querySelector(".collection");
+
+for(let item of items){
+  const htmlItems = `<div class="item">
+<div class="item-description-time">
+  <div class="item-description">
+    <p>${item.description}</p>
+  </div>
+  <div class="item-time">
+    <p>${item.time}</p>
+  </div>
+</div>
+<div class=1item-amount ">
+<div class="item-amount ${item.type === "+" ? "income-amount":"expense-amount"} ">
+  <p>${item.type}$${item.moneyValue}</p>
+</div>
+</div>`;
+
+collection.insertAdjacentHTML("afterbegin",htmlItems); //The insertAdjacentHTML() method of the Element interface parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position.
+
+  
+}
+}
 
 //fuction that adds items to the collection
 function addItem(type,description,moneyValue)
 {
-    const htmlItems = `<div class="item">
-<div class="item-description-time">
-  <div class="item-description">
-    <p>${description}</p>
-  </div>
-  <div class="item-time">
-    <p>${getFrmattedTime()}</p>
-  </div>
-</div>
-<div class=1item-amount ">
-<div class="item-amount ${type === "+" ? "income-amount":"expense-amount"} ">
-  <p>${type}$${moneyValue}</p>
-</div>
-</div>`;
 
-const collection = document.querySelector(".collection");
-collection.insertAdjacentHTML("afterbegin",htmlItems); //The insertAdjacentHTML() method of the Element interface parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position. 
+    const time = getFrmattedTime();
+   
+
+addItemToLocalStorage(type,description,moneyValue,time) ;
+ showItems();
+
+}
+
+function getItemsFromLocalStorage(){
+let items = localStorage.getItem("items");
+
+
+   if(items)
+   {
+    items = JSON.parse(items);
+   }
+
+   else{
+    items = [];
+   }
+   
+   return items;
+
+   
+   
+}
+
+function addItemToLocalStorage(type,description,moneyValue,time)
+{
+  let items = getItemsFromLocalStorage();
+
+   items.push({
+    description:description,
+    time:time,
+     type:type,
+    moneyValue:moneyValue,
+
+   });
+
+   localStorage.setItem("items",JSON.stringify(items));
 
 }
 
