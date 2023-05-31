@@ -1,5 +1,24 @@
 "use strict";
 
+function getFrmattedTime()
+{
+    const datetime = new Date().toLocaleTimeString("en-us",{
+        month:"short",
+        day:"numeric",
+        hour:"2-digit",
+        minute:"2-digit" ,
+    }); // Getting current daytime  
+
+    return datetime;
+    
+}
+
+
+
+
+//25 Feb, 06:45 PM
+
+
 document.querySelector("#ewallet-form").addEventListener("submit",function(event){
 
     event.preventDefault();// Prevent page from reloading 
@@ -27,7 +46,7 @@ function addItem(type,description,moneyValue)
     <p>${description}</p>
   </div>
   <div class="item-time">
-    <p>25 Feb, 06:45 PM</p>
+    <p>${getFrmattedTime()}</p>
   </div>
 </div>
 <div class=1item-amount ">
