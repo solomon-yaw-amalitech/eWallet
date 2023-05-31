@@ -23,9 +23,15 @@ document.querySelector("#ewallet-form").addEventListener("submit",function(event
 
     event.preventDefault();// Prevent page from reloading 
 
+
 const type = document.querySelector(".add__type").value;
 const description = document.querySelector(".add__description").value;
 const moneyValue = document.querySelector(".add__value").value;
+
+
+
+
+
 
 if(description.length>0 && moneyValue.length>0)
 {
@@ -58,7 +64,8 @@ for(let item of items){
 
 collection.insertAdjacentHTML("afterbegin",htmlItems); //The insertAdjacentHTML() method of the Element interface parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position.
 
-  
+showTotalIncome();
+showTotalExpenses();
 }
 }
 
@@ -118,3 +125,47 @@ function resetForm(){
      document.querySelector(".add__value").value="";
 }
 
+function showTotalIncome()
+{
+  let items = getItemsFromLocalStorage();
+  let totalIncome =0;
+  for(let item of items){
+    if( item.type==="+")
+    {
+    totalIncome+= parseInt(item.moneyValue);
+    }
+  }
+}
+
+function showTotalIncome()
+{
+  let items = getItemsFromLocalStorage();
+  let totalIncome =0;
+  for(let item of items){
+    console.log(item);
+    if( item.type==="+")
+    {
+    totalIncome += parseInt(item.moneyValue);
+
+    }
+  }
+   document.querySelector(".income__amount p").innerText = `$${totalIncome}`;
+
+   
+}
+  
+
+function showTotalExpenses()
+{
+  let items = getItemsFromLocalStorage();
+  let totalExpenses =0;
+  for(let item of items){
+    if( item.type==="-")
+    {
+    totalExpenses += parseInt(item.moneyValue);
+    }
+  }
+  console.log(totalExpenses);
+  
+  document.querySelector(".expense__amount p").innerText= `$${totalExpenses}`;
+}
