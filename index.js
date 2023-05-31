@@ -66,6 +66,7 @@ collection.insertAdjacentHTML("afterbegin",htmlItems); //The insertAdjacentHTML(
 
 showTotalIncome();
 showTotalExpenses();
+totalBalance();
 }
 }
 
@@ -142,7 +143,7 @@ function showTotalIncome()
   let items = getItemsFromLocalStorage();
   let totalIncome =0;
   for(let item of items){
-    console.log(item);
+    
     if( item.type==="+")
     {
     totalIncome += parseInt(item.moneyValue);
@@ -168,4 +169,23 @@ function showTotalExpenses()
   console.log(totalExpenses);
   
   document.querySelector(".expense__amount p").innerText= `$${totalExpenses}`;
+}
+
+function totalBalance(){
+let items = getItemsFromLocalStorage();
+let totalBalance = 0;
+
+for(let item of items)
+{
+  if(item.type === "+")
+  {
+    totalBalance += parseInt(item.moneyValue );
+  }
+  else if(item.type === "-")
+  {
+    totalBalance -= parseInt(item.moneyValue );
+  }
+  }
+document.querySelector(".balance__amount p").innerText = `${totalBalance}`;
+
 }
