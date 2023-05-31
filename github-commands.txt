@@ -26,5 +26,5 @@ git reset
 undo last commit - git reset HEAD~1
 
 commit Log
-git log
+git log	
  
